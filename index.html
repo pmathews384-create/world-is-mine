@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><title>WORLD IS MINE</title><style>
+body{margin:0;height:100vh;display:flex;justify-content:center;align-items:center;background:radial-gradient(#1a2a6a,#000);font-family:Arial}
+.card{background:linear-gradient(#2a4ab0,#1a2a6a);border:2px solid #4466dd;border-radius:20px;padding:25px;width:320px;text-align:center;color:#fff}
+h2{color:gold;margin:5px}
+#tag{font-size:15px;font-style:italic;opacity:0.8}
+input{width:90%;padding:12px;border-radius:8px;border:0;margin:15px 0;text-align:center;font-size:18px}
+button{padding:8px 18px;border-radius:20px;border:0;font-weight:bold;cursor:pointer;margin:5px}
+.guess{background:rgb(224, 224, 31)} .reset{background:#16161893;color:#e01818}
+</style></head><body>
+<div class="card">
+</h2> WORLD IS MINE</h2>
+<p id="tag">think smart, guess right, win big</p>
+<p style="font-size:12px">I have chosen a number between 1 and 10</p>
+<p id="lives" style="color:#ff6666;font-size:11px">Lives left: 3</p>
+<input id="g" type="number" placeholder="Enter number">
+<button class="guess" onclick="check()">GUESS</button>
+<button class="reset" onclick="resetGame()">RESET</button>
+<p id="msg">Attempts: 3</p>
+</div>
+<script>
+let s=Math.floor(Math.random()*10)+1,l=3,a=1;
+function check(){
+ let v=parseInt(g.value);
+ if(!v){msg.innerText='Enter a number';return;}
+ if(v==s){msg.innerHTML='Congratulations! You Win!<br>Correct was '+s;return;}
+ l--; a++;
+ if(l<=0){msg.innerHTML='Game Over! Correct was '+s; lives.innerText='Lives left: 0'; return;}
+ lives.innerText='Lives left: '+l;
+ msg.innerHTML=(v<s?'Too LOW! Try higher':'Too HIGH! Try lower')+'<br><br>Attempts: '+a;
+}
+function resetGame(){
+ s=Math.floor(Math.random()*10)+1; l=3; a=1; g.value='';
+ lives.innerText='Lives left: 3'; msg.innerHTML='Attempts: 1';
+}
+</script>
+</body></html>
